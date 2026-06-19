@@ -25,7 +25,7 @@ FPGA LEDs on Colorlight i5
 ```
 
 The complete workflow of the project is mentioned below.
-<img width="1122" height="1402" alt="WORKFLOW" src="https://github.com/user-attachments/assets/878c4355-458e-4f77-af76-ef846f866de9" />
+<img width="1055" height="1491" alt="ChatGPT Image Jun 16, 2026, 10_27_35 AM" src="https://github.com/user-attachments/assets/a0c43aa0-e39c-40fc-a8c8-013645bd9359" />
 
 
 ## Project architecture
