@@ -1,0 +1,105 @@
+
+program.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	00002117          	auipc	sp,0x2
+   4:	00010113          	mv	sp,sp
+   8:	078000ef          	jal	80 <main>
+
+0000000c <hang>:
+   c:	0000006f          	j	c <hang>
+
+00000010 <led_write>:
+  10:	fe010113          	addi	sp,sp,-32 # 1fe0 <main+0x1f60>
+  14:	00812e23          	sw	s0,28(sp)
+  18:	02010413          	addi	s0,sp,32
+  1c:	fea42623          	sw	a0,-20(s0)
+  20:	000027b7          	lui	a5,0x2
+  24:	fec42703          	lw	a4,-20(s0)
+  28:	00e7a023          	sw	a4,0(a5) # 2000 <_stack_top>
+  2c:	00000013          	nop
+  30:	01c12403          	lw	s0,28(sp)
+  34:	02010113          	addi	sp,sp,32
+  38:	00008067          	ret
+
+0000003c <delay>:
+  3c:	fe010113          	addi	sp,sp,-32
+  40:	00812e23          	sw	s0,28(sp)
+  44:	02010413          	addi	s0,sp,32
+  48:	fe042623          	sw	zero,-20(s0)
+  4c:	0100006f          	j	5c <delay+0x20>
+  50:	fec42783          	lw	a5,-20(s0)
+  54:	00178793          	addi	a5,a5,1
+  58:	fef42623          	sw	a5,-20(s0)
+  5c:	fec42703          	lw	a4,-20(s0)
+  60:	001e87b7          	lui	a5,0x1e8
+  64:	47f78793          	addi	a5,a5,1151 # 1e847f <_stack_top+0x1e647f>
+  68:	fee7f4e3          	bgeu	a5,a4,50 <delay+0x14>
+  6c:	00000013          	nop
+  70:	00000013          	nop
+  74:	01c12403          	lw	s0,28(sp)
+  78:	02010113          	addi	sp,sp,32
+  7c:	00008067          	ret
+
+00000080 <main>:
+  80:	ff010113          	addi	sp,sp,-16
+  84:	00112623          	sw	ra,12(sp)
+  88:	00812423          	sw	s0,8(sp)
+  8c:	01010413          	addi	s0,sp,16
+  90:	00100513          	li	a0,1
+  94:	f7dff0ef          	jal	10 <led_write>
+  98:	fa5ff0ef          	jal	3c <delay>
+  9c:	00200513          	li	a0,2
+  a0:	f71ff0ef          	jal	10 <led_write>
+  a4:	f99ff0ef          	jal	3c <delay>
+  a8:	00400513          	li	a0,4
+  ac:	f65ff0ef          	jal	10 <led_write>
+  b0:	f8dff0ef          	jal	3c <delay>
+  b4:	00800513          	li	a0,8
+  b8:	f59ff0ef          	jal	10 <led_write>
+  bc:	f81ff0ef          	jal	3c <delay>
+  c0:	00400513          	li	a0,4
+  c4:	f4dff0ef          	jal	10 <led_write>
+  c8:	f75ff0ef          	jal	3c <delay>
+  cc:	00200513          	li	a0,2
+  d0:	f41ff0ef          	jal	10 <led_write>
+  d4:	f69ff0ef          	jal	3c <delay>
+  d8:	fb9ff06f          	j	90 <main+0x10>
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	1b41                	.insn	2, 0x1b41
+   2:	0000                	.insn	2, 0x
+   4:	7200                	.insn	2, 0x7200
+   6:	7369                	.insn	2, 0x7369
+   8:	01007663          	bgeu	zero,a6,14 <led_write+0x4>
+   c:	0011                	.insn	2, 0x0011
+   e:	0000                	.insn	2, 0x
+  10:	1004                	.insn	2, 0x1004
+  12:	7205                	.insn	2, 0x7205
+  14:	3376                	.insn	2, 0x3376
+  16:	6932                	.insn	2, 0x6932
+  18:	7032                	.insn	2, 0x7032
+  1a:	0031                	.insn	2, 0x0031
+
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	3a434347          	.insn	4, 0x3a434347
+   4:	2820                	.insn	2, 0x2820
+   6:	3331                	.insn	2, 0x3331
+   8:	322e                	.insn	2, 0x322e
+   a:	302e                	.insn	2, 0x302e
+   c:	312d                	.insn	2, 0x312d
+   e:	7531                	.insn	2, 0x7531
+  10:	7562                	.insn	2, 0x7562
+  12:	746e                	.insn	2, 0x746e
+  14:	3175                	.insn	2, 0x3175
+  16:	2932312b          	.insn	4, 0x2932312b
+  1a:	3120                	.insn	2, 0x3120
+  1c:	2e322e33          	.insn	4, 0x2e322e33
+  20:	0030                	.insn	2, 0x0030
