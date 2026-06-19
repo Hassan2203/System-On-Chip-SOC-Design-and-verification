@@ -24,6 +24,10 @@ Wishbone interconnect selects LED slave
 FPGA LEDs on Colorlight i5
 ```
 
+The complete workflow of the project is mentioned below.
+<img width="1122" height="1402" alt="WORKFLOW" src="https://github.com/user-attachments/assets/878c4355-458e-4f77-af76-ef846f866de9" />
+
+
 ## Project architecture
 
 ```text
@@ -42,8 +46,6 @@ The C code writes LED values to:
 ```c
 #define LED_ADDR ((volatile unsigned int *)0x00002000)
 ```
-<img width="1600" height="720" alt="duty cycle" src="https://github.com/user-attachments/assets/b88b84c4-6871-49ec-adfc-3b1d58dadff2" />
-
 Colorlight i5 FPGA pins used:
 
 ```text
@@ -55,6 +57,10 @@ led[3]  = M17
 ```
 
 ---
+
+The architecture is shown below.
+<img width="1672" height="941" alt="flow" src="https://github.com/user-attachments/assets/df179d4c-333f-47c1-b9c2-23833a08b183" />
+
 
 # Separate Step-by-Step Commands
 
@@ -98,6 +104,10 @@ The firmware must be compiled for RV32I only, so the important GCC flags are:
 These flags make the C program compatible with the custom RV32I processor.
 
 ---
+The below figure shows the full output using GTKWAVE.
+<img width="1075" height="625" alt="image" src="https://github.com/user-attachments/assets/45292eca-74d4-4a96-8686-8764c333b782" />
+
+
 
 ## Step 2: GCC to HEX conversion
 
@@ -167,6 +177,14 @@ If you manually change `program.hex`, always regenerate `rom_init.vh`:
 
 ---
 
+The generated binary is shown below.
+<img width="846" height="390" alt="image" src="https://github.com/user-attachments/assets/292e0549-91d0-470b-ae0e-2fa3714104a2" />
+
+
+
+So the LED Output is shown below
+<img width="651" height="246" alt="image" src="https://github.com/user-attachments/assets/18d80f22-6f59-4004-8efb-fe794784c5a9" />
+
 ## Step 3: Synthesis using Yosys
 
 Yosys converts the Verilog RTL design into an ECP5 netlist JSON file.
@@ -186,6 +204,10 @@ cpu.json
 This file is used by nextpnr.
 
 ---
+
+The resources used in this project is shown below.
+<img width="538" height="431" alt="image" src="https://github.com/user-attachments/assets/b5aba75a-e3c1-4842-8309-ff65b9d3dd4d" />
+
 
 ## Step 4: nextpnr-ecp5 command
 
@@ -216,6 +238,9 @@ Constraint file:
 ```text
 constraints_colorlight_i5.lpf
 ```
+
+<img width="582" height="339" alt="image" src="https://github.com/user-attachments/assets/e784effa-27b1-47b1-abf4-70eacd6f2421" />
+
 
 Output file:
 
@@ -297,6 +322,13 @@ Expected C-code LED sequence:
 ```
 
 ---
+
+<img width="647" height="180" alt="image" src="https://github.com/user-attachments/assets/dd0759ab-b601-49eb-8beb-fec7d18a02db" />
+
+LED Blinking sequence on FPGA is shown below.
+
+<img width="516" height="269" alt="image" src="https://github.com/user-attachments/assets/46f49c15-7d8a-4c36-b95b-25b243691ed3" />
+
 
 # Complete Combined Flow
 
