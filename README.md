@@ -1,7 +1,4 @@
 
-README.txt
-PROJECT CODE README AND COMPLETE START-TO-END WORKFLOW
-
 Project Title:
 Design and FPGA Implementation of a Single-Cycle RV32I RISC-V SoC with Wishbone Bus and Memory-Mapped LED Pattern Controller
 
