@@ -42,6 +42,7 @@ The C code writes LED values to:
 ```c
 #define LED_ADDR ((volatile unsigned int *)0x00002000)
 ```
+<img width="1600" height="720" alt="duty cycle" src="https://github.com/user-attachments/assets/b88b84c4-6871-49ec-adfc-3b1d58dadff2" />
 
 Colorlight i5 FPGA pins used:
 
